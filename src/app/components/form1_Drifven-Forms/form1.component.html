@@ -1,0 +1,177 @@
+<div class="flex">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Template Driven Forms</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form 
+            id="form-principal1" 
+            #Form1="ngForm"
+            (ngSubmit)="validar()">
+                <fieldset>
+                    <legend>Dados do Formulário </legend>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Nome</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Digite Seu nome"
+                    [(ngModel)]='nome'
+                    name="nome"
+                    #inputnome="ngModel"
+                    required
+                    minlength="10"
+                    autocapitalize="false">
+                    <mat-error *ngIf="inputnome.invalid">
+                        <span *ngIf="inputnome.errors?.['minlength']">
+                            Este campo é obrigatório
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Sobrenome</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Digite Seu Sobrenome"
+                    [(ngModel)]='sobrenome'
+                    name="nome"
+                    #inputsobrenome="ngModel"
+                    required
+                    minlength="10">
+                    <mat-error *ngIf="inputsobrenome.invalid">
+                        <span *ngIf="inputsobrenome.errors?.['minlength']">
+                            Este campo é obrigatório
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Username</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Digite Seu nome de usuário"
+                    [(ngModel)]='username'
+                    name="nome"
+                    #inputusername="ngModel"
+                    required
+                    minlength="10">
+                    <mat-error *ngIf="inputusername.invalid">
+                        <span *ngIf="inputusername.errors?.['minlength']">
+                            Este campo é obrigatório
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>CPF</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Digite Seu CPF"
+                    [(ngModel)]='cpf'
+                    name="cpf"
+                    #inputcpf="ngModel"
+                    required
+                    minlength="11">
+                    <mat-error *ngIf="inputcpf.invalid">
+                        <span *ngIf="inputcpf.errors?.['minlength']">
+                            Este campo é obrigatório
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Telefone</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Digite Seu Telefone"
+                    [(ngModel)]='telefone'
+                    name="nome"
+                    #inputtelefone="ngModel"
+                    required
+                    minlength="8">
+                    <mat-error *ngIf="inputtelefone.invalid">
+                        <span *ngIf="inputtelefone.errors?.['minlength']">
+                            Este campo é obrigatório
+                        </span>
+                    </mat-error>
+                </mat-form-field>                
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Endereço</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Digite Seu Endereço"
+                    [(ngModel)]='endereco'
+                    name="nome"
+                    #inputendereco="ngModel"
+                    required
+                    minlength="12">
+                    <mat-error *ngIf="inputendereco.invalid">
+                        <span *ngIf="inputendereco.errors?.['minlength']">
+                            Este campo é obrigatório
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Complemento</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Bloco a/apto400"
+                    [(ngModel)]='complemento'
+                    name="nome"
+                    #inputcomplemento="ngModel"
+                    required
+                    minlength="6">
+                    <mat-error *ngIf="inputcomplemento.invalid">
+                        <span *ngIf="inputcomplemento.errors?.['minlength']">
+                            Este campo é obrigatório
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Senha</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Digite uma senha"
+                    [(ngModel)]='autenticador.senha1'
+                    name="nome"
+                    #inputsenha1="ngModel"
+                    required
+                    minlength="6">
+                    <mat-error *ngIf="inputsenha1.invalid">
+                        <span *ngIf="inputsenha1.errors?.['minlength']">
+                            Minimo de 6 caracteres.
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">                    
+                    <mat-label>Confirmar Senha</mat-label>
+                    <input 
+                    type="text"
+                    matInput
+                    placeholder="Confirme sua senha"
+                    [(ngModel)]='autenticador.senha2'
+                    name="nome"
+                    #inputsenha2="ngModel"
+                    required
+                    minlength="6">
+                    <mat-error *ngIf="inputsenha2.invalid">
+                        <span *ngIf='autenticador.senha2 != autenticador.senha1'>
+                            Senha diferente
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <button 
+                mat-raised-button
+                type="submit"
+                color="accent"
+                [disabled]="Form1.invalid">Cadastrar</button>
+            </fieldset>
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+</div>
