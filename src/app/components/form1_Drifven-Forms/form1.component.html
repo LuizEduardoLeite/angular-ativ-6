@@ -1,5 +1,5 @@
 <div class="flex">
-    <mat-card>
+    <mat-card class="card">
         <mat-card-header>
             <mat-card-title>Template Driven Forms</mat-card-title>
         </mat-card-header>
@@ -21,10 +21,13 @@
                     #inputnome="ngModel"
                     required
                     minlength="10"
-                    autocapitalize="false">
+                    autocapitalize="off">
                     <mat-error *ngIf="inputnome.invalid">
                         <span *ngIf="inputnome.errors?.['minlength']">
-                            Este campo é obrigatório
+                            minimo de 10 caracteres
+                        </span>
+                        <span *ngIf="inputnome.errors?.['required']">
+                            Campo obrigatório
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -41,7 +44,10 @@
                     minlength="10">
                     <mat-error *ngIf="inputsobrenome.invalid">
                         <span *ngIf="inputsobrenome.errors?.['minlength']">
-                            Este campo é obrigatório
+                            minimo de 10 caracteres
+                        </span>
+                        <span *ngIf="inputsobrenome.errors?.['required']">
+                            Campo obrigatório
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -58,7 +64,10 @@
                     minlength="10">
                     <mat-error *ngIf="inputusername.invalid">
                         <span *ngIf="inputusername.errors?.['minlength']">
-                            Este campo é obrigatório
+                            minimo de 10 caracteres
+                        </span>
+                        <span *ngIf="inputsobrenome.errors?.['required']">
+                            Campo Obrigatório
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -68,14 +77,18 @@
                     type="text"
                     matInput
                     placeholder="Digite Seu CPF"
-                    [(ngModel)]='cpf'
+                    [(ngModel)]='CPF'
                     name="cpf"
-                    #inputcpf="ngModel"
+                    #InputCpf="ngModel"
                     required
-                    minlength="11">
-                    <mat-error *ngIf="inputcpf.invalid">
-                        <span *ngIf="inputcpf.errors?.['minlength']">
-                            Este campo é obrigatório
+                    minlength="11"
+                    autocomplete="off">
+                    <mat-error *ngIf="InputCpf.invalid">
+                        <span *ngIf="InputCpf.errors?.['minlength']">
+                            minimo de 11 caracteres
+                        </span>
+                        <span *ngIf="InputCpf.errors?.['required']">
+                            campo obrigatório
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -84,18 +97,21 @@
                     <input 
                     type="text"
                     matInput
-                    placeholder="Digite Seu Telefone"
-                    [(ngModel)]='telefone'
-                    name="nome"
-                    #inputtelefone="ngModel"
+                    placeholder="Digite um numero de telefone"
+                    [(ngModel)]="Telefone"
+                    name="telefone"
+                    #InputTelefone="ngModel"
                     required
-                    minlength="8">
-                    <mat-error *ngIf="inputtelefone.invalid">
-                        <span *ngIf="inputtelefone.errors?.['minlength']">
-                            Este campo é obrigatório
+                    minlength="12">
+                    <mat-error *ngIf="InputTelefone.invalid">
+                        <span *ngIf="InputTelefone.errors?.['minlength']">
+                            minimo de 11 caracteres.
+                        </span>
+                        <span *ngIf="InputTelefone.errors?.['required'] ">
+                            campo obrigatório.
                         </span>
                     </mat-error>
-                </mat-form-field>                
+                </mat-form-field>
                 <mat-form-field  appearance="fill">                    
                     <mat-label>Endereço</mat-label>
                     <input 
@@ -109,7 +125,10 @@
                     minlength="12">
                     <mat-error *ngIf="inputendereco.invalid">
                         <span *ngIf="inputendereco.errors?.['minlength']">
-                            Este campo é obrigatório
+                            minimo de 12 caracteres
+                        </span>
+                        <span *ngIf="inputendereco.errors?.['required']">
+                            Campo Obrigatório
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -126,7 +145,10 @@
                     minlength="6">
                     <mat-error *ngIf="inputcomplemento.invalid">
                         <span *ngIf="inputcomplemento.errors?.['minlength']">
-                            Este campo é obrigatório
+                            minimo de 6 caracteres
+                        </span>
+                        <span *ngIf="inputcomplemento.errors?.['required']">
+                            Campo Obrigatório
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -142,8 +164,17 @@
                     required
                     minlength="6">
                     <mat-error *ngIf="inputsenha1.invalid">
-                        <span *ngIf="inputsenha1.errors?.['minlength']">
+                        <span *ngIf="inputsenha1.errors?.['minlength'] ">
                             Minimo de 6 caracteres.
+                        </span>
+                        <span *ngIf="inputsenha1.errors?.['required']">
+                            Campo obrigatório
+                        </span>
+                        <span *ngIf='autenticador.senha2 !== autenticador.senha1 || autenticador.senha1 != autenticador.senha2'>
+                            Senha diferente
+                        </span>
+                        <span *ngIf='autenticador.senha2 == autenticador.senha1 || autenticador.senha1 == autenticador.senha2'>
+                            Senha identica
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -159,8 +190,17 @@
                     required
                     minlength="6">
                     <mat-error *ngIf="inputsenha2.invalid">
-                        <span *ngIf='autenticador.senha2 != autenticador.senha1'>
+                        <span *ngIf="inputsenha2.errors?.['minlength']">
+                            minimo de 6 caracteres
+                        </span>
+                        <span *ngIf="inputsenha2.errors?.['required']">
+                            Campo obrigatório
+                        </span>
+                        <span *ngIf='autenticador.senha2 != autenticador.senha1 || autenticador.senha1 != autenticador.senha2'>
                             Senha diferente
+                        </span>
+                        <span *ngIf='autenticador.senha2 == autenticador.senha1 || autenticador.senha1 == autenticador.senha2'>
+                            Senha identica
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -168,7 +208,8 @@
                 mat-raised-button
                 type="submit"
                 color="accent"
-                [disabled]="Form1.invalid">Cadastrar</button>
+                [disabled]="Form1.invalid"
+                (click)="MostrarDialog()">Cadastrar</button>
             </fieldset>
             </form>
 

@@ -1,12 +1,12 @@
 <div class="flex">
-    <mat-card>
+    <mat-card class="card">
         <mat-card-header>
             <mat-card-title>Reactive Forms</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <form 
             id="form-principal2" 
-            #Form2="ngForm"
+            #form2="ngForm"
             (ngSubmit)="validar()"
             [formGroup]="dadosform">
                 <fieldset>
@@ -17,7 +17,9 @@
                     type="text"
                     matInput
                     placeholder="Digite Seu nome"
-                    formControlName="nome">
+                    formControlName="nome"
+                    [formGroup]="dadosform">
+                    
                     <mat-error>
                         <span>
                             Este campo é obrigatório
@@ -110,9 +112,15 @@
                     placeholder="Digite uma senha"
                     formControlName="senha1"
                     #key1>
-                    <mat-error>
-                        <span>
-                            Minimo de 6 caracteres
+                    <mat-error *ngIf="dadosform.controls['senha1'].invalid">
+                        <span *ngIf="dadosform.controls['senha1'].getError('minlength')">
+                            <p> minimo de 8 caracteres </p>
+                        </span>
+                        <span *ngIf= "key1.value == key2.value || key2.value == key1.value">
+                            Senha identica
+                        </span>
+                        <span *ngIf= "key1.value !== key2.value || key2.value !== key1.value">
+                            Senha diferente
                         </span>
                     </mat-error>
                 </mat-form-field>
@@ -124,17 +132,28 @@
                     placeholder="Confirme sua senha"
                     formControlName="senha2"
                     #key2>
-                    <mat-error>
-                        <span *ngIf="key2.value != key1.value">
-                            Senha diferente 
+                    <mat-error *ngIf="dadosform.controls['senha2'].invalid">
+                        <span *ngIf="dadosform.controls['senha2'].getError('minlength')">
+                           <p> minimo de 8 caracteres </p>
                         </span>
+
+                        <span *ngIf= "key1.value == key2.value || key2.value == key1.value ">
+                            Senha identica 
+                        </span>
+                        <span  *ngIf= "key1.value != key2.value || key2.value !== key1.value">
+                             Senha diferente 
+                        </span>
+                        
+                         
                     </mat-error>
                 </mat-form-field>
                 <button 
                 mat-raised-button
                 type="submit"
                 color="accent"
-                [disabled]="Form2.invalid">Cadastrar</button>
+                [disabled]="form2.invalid"
+                (click)="validar()"
+                (click)=" MostrarDialog()">Cadastrar</button>
             </fieldset>
             </form>
 

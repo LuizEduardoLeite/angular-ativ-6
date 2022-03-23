@@ -1,5 +1,10 @@
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+
+
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+
 
 @Component({
   selector: 'form1',
@@ -8,32 +13,34 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class Form1Component implements OnInit {
 
-  nome:string=''
-  sobrenome:string=''
-  username:string=''
-  cpf:string=''
-  telefone:string=''
+  
+  
+  nome:string = ''
+  sobrenome:string = ''
+  username:string = ''
+  CPF!:number
+  Telefone!:number
   endereco:string=''
   complemento:string=''
-  senha1:number=0
-  senha2:number=0
+  senha1?:number
+  senha2?:number
   autenticador = {
    senha1:'',
    senha2:''
   }
   
   validar():void{
-    this.snack.open('Voce foi cadastrado','ok')
+    
     console.log(`Nome =  ${this.nome}`)
     console.log(`Sobrenome =  ${this.sobrenome}`)
     console.log(`Username =  ${this.username}`)
-    console.log(`CPF =  ${this.cpf}`)
-    console.log(`Telefone =  ${this.telefone}`)
+    console.log(`CPF =  ${this.CPF}`)
+    console.log(`Telefone =  ${this.Telefone}`)
     console.log(`Endereço = ${this.endereco}`)
     console.log(`Complemento do usuario ${this.complemento}`)
     console.log(`Senha =  ${this.senha1}`)
     console.log(`Confirmar senha = ${this.senha2}`)
-
+    
     
   }
 
@@ -43,8 +50,20 @@ export class Form1Component implements OnInit {
 
 
 
-  constructor(private snack:MatSnackBar) { }
+  constructor(public diagref:MatDialog,) { }
 
+  MostrarDialog(){
+    let ref = this.diagref.open(DialogComponent)
+    ref.componentInstance.nomev = this.nome
+    ref.componentInstance.sobrenomev = this.sobrenome
+    ref.componentInstance.usernamev = this.username
+    ref.componentInstance.cpfv = this.CPF!
+    ref.componentInstance.telefonev = this.Telefone
+    ref.componentInstance.enderecov = this.endereco
+    ref.componentInstance.complementov = this.complemento
+    ref.componentInstance.senhav = this.senha1!
+    ref.componentInstance.autenticacaov = this.senha2!
+  }
   ngOnInit(): void {
   }
 
